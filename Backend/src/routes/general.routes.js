@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getAllArticles,deleteArticle,getArticleById } from "../controllers/orignalArticles.controller.js";
-import { updateOldestArticlesFromGoogle } from "../controllers/UpdatedArticles.controller.js";
+import { updateOldestArticlesFromGoogle } from "../controllers/updatedArticles.controller.js";
 import { fetchNSaveOld } from "../controllers/scrapOldNSave.controller.js";
 
  const router = Router()
