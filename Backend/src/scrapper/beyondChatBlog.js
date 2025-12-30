@@ -2,7 +2,7 @@ import axios from "axios"
 import { load } from "cheerio"
 
 //returns num
-export const getBlogLastPage = (async () => {
+ const getBlogLastPage = (async () => {
 
     const res = await axios({ method: "get", url: "https://beyondchats.com/blogs/" })
 
@@ -25,22 +25,22 @@ export const getBlogLastPage = (async () => {
 })
 
 //return array
-export const getArticleLinksFromPage = (async (page) => {
-
+const getArticleLinksFromPage = (async (page) => {
+    
     const res = await axios({
         method: "get",
         url: `https://beyondchats.com/blogs/page/${page}`
-
+        
     })
-
+    
     const $ = load(res.data)
-
+    
     const articleElement = $(".entry-title")
-
+    
     const articleLinks = []
-
+    
     articleElement.each((_, element) => {
-
+        
         const link = $(element).extract(
             {
                 links: {
@@ -49,23 +49,24 @@ export const getArticleLinksFromPage = (async (page) => {
                 }
             }
         )
-
+        
         articleLinks.push(link.links)
-
+        
     })
-
-
+    
+    
     return (articleLinks)
-
-
+    
+    
 })
 
+//return array
 export const getOldestFiveArticles = (async () => {
-
+    
     const lastPg = await getBlogLastPage()
-
+    
     const Articlelinks = await getArticleLinksFromPage(lastPg);
-
+    
     const OldestFiveArticleLinks = []
     
     if (Articlelinks.length < 5) {
