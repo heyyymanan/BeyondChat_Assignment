@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/db";
 import Article from "@/models/Article";
+import UpdatedArticle from "@/models/UpdatedArticle";
 
 export async function GET(req, { params }) {
   await dbConnect();
