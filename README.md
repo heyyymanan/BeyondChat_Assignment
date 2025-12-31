@@ -1,4 +1,4 @@
-# 🚀[Assignment] BeyondChats – AI Content Management Dashboard
+# 🚀[Assignment] BeyondChats – AI Article Updation & Management Dashboard
 
 A production-style content pipeline that scrapes legacy articles, enriches them using AI, and streams real-time backend progress logs to a modern dashboard.
 
