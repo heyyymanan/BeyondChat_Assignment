@@ -1,0 +1,147 @@
+BEYONDCHATS – SETUP & RUN GUIDE
+==============================
+
+This document explains how to set up and run the BeyondChats AI Content
+Management Dashboard locally.
+
+--------------------------------------------------
+SYSTEM REQUIREMENTS
+--------------------------------------------------
+- Node.js v18 or higher
+- npm or yarn
+- MongoDB Atlas account (or local MongoDB)
+- Google Gemini API key
+- SerpAPI key
+- Stable internet connection (for scraping + AI)
+
+--------------------------------------------------
+PROJECT OVERVIEW
+--------------------------------------------------
+This project is a backend-heavy content pipeline that:
+- Scrapes old blog articles
+- Stores original articles in MongoDB
+- Rewrites articles using Google Gemini AI
+- Streams real-time backend logs to the frontend using SSE
+- Displays progress and logs in a dashboard UI
+
+--------------------------------------------------
+STEP 1: CLONE THE PROJECT
+--------------------------------------------------
+Open a terminal and run:
+
+git clone <repository-url>
+cd assignment
+
+--------------------------------------------------
+STEP 2: INSTALL DEPENDENCIES
+--------------------------------------------------
+Run:
+
+npm install
+
+--------------------------------------------------
+STEP 3: CREATE ENVIRONMENT FILE
+--------------------------------------------------
+Create a file named:
+
+.env
+
+Add the following variables:
+
+MDB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net
+GOOGLE_API_KEY=your_gemini_api_key
+SERP_API_KEY=your_serpapi_key
+
+IMPORTANT:
+- Do NOT commit the .env file
+- MongoDB database name is appended in code
+- Free-tier Gemini API is supported
+
+--------------------------------------------------
+STEP 4: RUN THE PROJECT
+--------------------------------------------------
+Start the development server:
+
+npm run dev
+
+Open the browser at:
+
+http://localhost:3000
+
+--------------------------------------------------
+DASHBOARD FEATURES
+--------------------------------------------------
+- View original and AI-enhanced articles
+- Scrape oldest articles from the source blog
+- Run AI rewriting pipeline
+- Watch real-time logs and progress
+- Delete original or AI-enhanced articles contextually
+
+--------------------------------------------------
+REAL-TIME LOGGING (SSE)
+--------------------------------------------------
+Long-running operations use Server-Sent Events:
+
+- Scraping old articles
+- AI article rewriting
+
+Logs are streamed live from backend to frontend with:
+- Stage name
+- Timestamp
+- Status messages
+- Error information (if any)
+
+--------------------------------------------------
+AI RATE LIMIT NOTICE (IMPORTANT)
+--------------------------------------------------
+This project uses Google Gemini API – Free Tier.
+
+Free tier limitations:
+- ~20 requests per day per model
+- Very low requests per minute
+- Rate limit errors return HTTP 429 (RESOURCE_EXHAUSTED)
+
+--------------------------------------------------
+HOW RATE LIMITS ARE HANDLED
+--------------------------------------------------
+- Automatic model fallback is implemented:
+  - gemini-2.5-flash
+  - gemini-2.5-flash-lite
+  - gemini-3-flash
+- Each model is tried once per article
+- No infinite retries
+- Rate-limit events are logged and shown in UI
+- Articles are skipped gracefully if all models fail
+
+--------------------------------------------------
+DEVELOPMENT MODE NOTE
+--------------------------------------------------
+In Next.js development mode:
+- SSE routes may execute twice
+- This can temporarily increase API usage
+- This behavior does NOT occur in production builds
+
+--------------------------------------------------
+DELETE BEHAVIOR
+--------------------------------------------------
+- Original tab deletes original article
+- AI Enhanced tab deletes only the AI-generated version
+- No confirmation modal is used
+- Delete actions are context-aware
+
+--------------------------------------------------
+PRODUCTION NOTE
+--------------------------------------------------
+With a paid Gemini plan:
+- Rate limits increase significantly
+- Model fallback becomes rare
+- No architectural changes are required
+
+--------------------------------------------------
+AUTHOR
+--------------------------------------------------
+Manan Vyas
+BCA | Backend & Systems Enthusiast
+
+This project focuses on real-world engineering practices,
+not just demo-level functionality.
