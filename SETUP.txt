@@ -29,7 +29,7 @@ STEP 1: CLONE THE PROJECT
 --------------------------------------------------
 Open a terminal and run:
 
-git clone <repository-url>
+git clone https://github.com/heyyymanan/BeyondChat_Assignment.git
 cd assignment
 
 --------------------------------------------------
@@ -37,14 +37,14 @@ STEP 2: INSTALL DEPENDENCIES
 --------------------------------------------------
 Run:
 
-npm install
+npm i
 
 --------------------------------------------------
 STEP 3: CREATE ENVIRONMENT FILE
 --------------------------------------------------
 Create a file named:
 
-.env
+.env.local
 
 Add the following variables:
 
@@ -53,9 +53,9 @@ GOOGLE_API_KEY=your_gemini_api_key
 SERP_API_KEY=your_serpapi_key
 
 IMPORTANT:
-- Do NOT commit the .env file
+- Do NOT commit the .env files
 - MongoDB database name is appended in code
-- Free-tier Gemini API is supported
+- Free-tier Gemini API is currently in use
 
 --------------------------------------------------
 STEP 4: RUN THE PROJECT
@@ -67,6 +67,10 @@ npm run dev
 Open the browser at:
 
 http://localhost:3000
+
+--------------------------------------------------
+DONE !!!!!!!!!!!!! :)
+--------------------------------------------------
 
 --------------------------------------------------
 DASHBOARD FEATURES
